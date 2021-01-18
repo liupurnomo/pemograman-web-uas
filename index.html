@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    */
+    Nama Liu Purnomo
+    Nim 2010013
+    /*
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body >
+    <div style='width: 70%; margin: auto; padding: 20px; padding-bottom: 160px; border: solid; border-radius: 20px;'>
+        
+        <div style="float: left; margin-right: 50px;">
+            <table border="1" cellpading="0" cellspacing="2">
+                <tr><td align="center" ><h2>Pemesanan Tiket Maskapai</h2></td></tr>
+                <tr>
+                    <td>
+                        <table width="450" border="0" cellpading="0" cellspacing="10" align="center">
+                            <tr>
+                                <td>Nama Pemesan</td>
+                                <td>:</td>
+                                <td><input type="text" id="nama" name="nama" size="40" required></td>
+                            </tr>
+                            <tr>
+                                <td>Jumlah Tiket</td>
+                                <td>:</td>
+                                <td><input type="number" id="jumlahTiket" name="jumlahTiket" min="0" required></td>
+                            </tr>
+                            <tr>
+                                <td>Kelas</td>
+                                <td>:</td>
+                                <td>
+                                    <select name="kelas" id="kelas">
+                                        <option id="kelas" value="Ekonomi">Ekonomi</option>
+                                        <option id="kelas" value="Bisnis">Bisnis</option>
+                                        <option id="kelas" value="Eksekutif">Eksekutif</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Tujuan</td>
+                                <td>:</td>
+                                <td>
+                                    <select name="tujuan" id="tujuan">
+                                        <option id="tujuan" value="Bali">Bali</option>
+                                        <option id="tujuan" value="Yogyakarta">Yogyakarta</option>
+                                        <option id="tujuan" value="Solo">Solo</option>
+                                        <option id="tujuan" value="Semarang">Semarang</option>
+                                        <option id="tujuan" value="Surabaya">Surabaya</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bagasi</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="radio" id="bagasi" name="bagasi" value="5"><label for="5">5 Kg</label>
+                                    <input type="radio" id="bagasi" name="bagasi" value="10"><label for="10">10 Kg</label>
+                                    <input type="radio" id="bagasi" name="bagasi" value="15"><label for="15">15 Kg</label>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    Asuransi
+                                </td>
+                                <td>:</td>
+                                <td>
+                                    <input type="checkbox" name="asuransi" id="asuransi" value="Asuransi Jiwa"><label for="Asuransi Jiwa">Asuransi Jiwa</label><BR>
+                                    <input type="checkbox" name="asuransi" id="asuransi" value="Asuransi Kecelakaan"><label for="Asuransi Kecelakaan">Asuransi Kecelakaan</label><BR>
+                                    <input type="checkbox" name="asuransi" id="asuransi" value="Asuransi Keterlambatan"><label for="Asuransi Keterlambatan">Asuransi Keterlambatan</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="submit" name="submit" value="Simpan" id="submit" />
+                                    <input type="reset" name="batal" value="Batal" id="batal" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <table border="1" cellspacing="2" id="view">
+                <tr><td align="center" colspan="3"><h2>Data Pemesanan Tiket</h2></td></tr>
+                <tr>
+                    <td>Nama Pemesan</td>
+                    <td>:</td>
+                    <td id="tampilnama"></td>
+                </tr>
+                <tr>
+                    <td>Jumlah</td>
+                    <td>:</td>
+                    <td id="tampiljumlahTiket"></td>
+                </tr>
+                <tr>
+                    <td>Kelas</td>
+                    <td>:</td>
+                    <td id="tampilkelas"></td>
+                </tr>
+                <tr>
+                    <td>Tujuan</td>
+                    <td>:</td>
+                    <td id="tampiltujuan"></td>
+                </tr>
+                <tr>
+                    <td>Bagasi</td>
+                    <td>:</td>
+                    <td id="tampilbagasi"></td>
+                </tr>
+                <tr>
+                    <td>Asuransi</td>
+                    <td>:</td>
+                    <td id="tampilasuransi"></td>
+                </tr>
+                <tr>
+                    <td>Total Harga</td>
+                    <td>:</td>
+                    <td id="tampiltotalHarga"></td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <script>
+        let submit = document.getElementById("submit");
+    
+        submit.addEventListener('click', function(){     
+            let nama = document.getElementById("nama").value;
+            let jumlahTiket = document.getElementById("jumlahTiket").value;
+            let kelas = document.getElementById("kelas").value;
+            if(kelas == "Ekonomi"){
+                harga = 1000000;
+                kelas = `${kelas} (Air Mineral)`;
+            }else if(kelas == "Bisnis"){
+                harga = 2000000;
+                kelas = `${kelas} (Snack)`;
+            }else if(kelas == "Eksekutif"){
+                harga = 3000000;
+                kelas = `${kelas} (Makan)`;
+            }
+            hargaTiket = jumlahTiket * harga;
+            if(jumlahTiket > 3){
+                hargaTiket = hargaTiket - (30/100 * hargaTiket);
+            }
+
+            let tujuan = document.getElementById("tujuan").value;
+            let bagasi = document.querySelector("input[id='bagasi']:checked").value;
+            if(bagasi == 5){
+                hargaBagasi = 100000;
+            }else if(bagasi == 10){
+                hargaBagasi = 150000;
+            }else if(bagasi == 15){
+                hargaBagasi = 200000;
+            }
+            bagasi = `${bagasi}kg (${hargaBagasi})`;
+            let arr_asuransi = document.querySelectorAll("input[id='asuransi']:checked");
+            tempArray = [];
+            for(var i=0; i<arr_asuransi.length; i++){
+                tempArray.push(arr_asuransi[i].value);
+                asuransi = tempArray.join(", ");
+            }
+
+            hargaAsuransi = arr_asuransi.length * 50000;
+            asuransi = `${asuransi} (${hargaAsuransi})`;
+            console.log(arr_asuransi);
+
+            totalHarga = hargaTiket + hargaBagasi + hargaAsuransi;
+
+            document.getElementById("tampilnama").innerHTML = nama;
+            document.getElementById("tampiljumlahTiket").innerHTML = jumlahTiket;
+            document.getElementById("tampilkelas").innerHTML = kelas;
+            document.getElementById("tampiltujuan").innerHTML = tujuan;
+            document.getElementById("tampilbagasi").innerHTML = bagasi;
+            document.getElementById("tampilasuransi").innerHTML = asuransi;
+            document.getElementById("tampiltotalHarga").innerHTML = totalHarga;
+            
+        });
+    </script>
+</body>
+</html>
